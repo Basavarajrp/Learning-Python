@@ -105,4 +105,130 @@ b=copy.deepcopy(std)
 b["Place"]["Perm"]="Mysore"
 print(std)  #changes made to b, will not effect the std this is deep copy 
 print(b)    #make use of copy module whenever there is nested dict,list,tuples..
+print()
 
+
+
+
+
+
+
+
+
+
+#----------------------Collections module in python----------------------------------
+print("collections.OrderedDict: Remember the Insertion Order of Keys...")
+import collections
+d = collections.OrderedDict(one=1,two=2,three=3)
+print(d)
+
+d['four']=4   #inserting new elements..
+print(d)
+
+print(d.keys())
+print(d.values())
+print()
+print('------------------------------------------------------------------------------------')
+print("colections.defaultdict:Return Default Values for Missing Keys..")
+print("Example 1")
+from collections import defaultdict
+dd = defaultdict(list)
+
+dd['dogs'].append("Rufus")
+dd['dogs'].append("Kathrin")
+dd['cat'].append("Black_Cat")
+dd['cat'].append("White_Cat")
+print(dd)  #creats key and values of type-list..
+print("Dogs :",dd['dogs'])
+
+print("Creating the counter by normal method and also by defaultdict method...")
+dic_counter = {}
+lis = [1,2,3,4,5,4,3,6,6,7,8,9,4]
+for i in range(len(lis)):
+    if lis[i] not in dic_counter:
+        dic_counter[lis[i]] = 1
+    else:
+        dic_counter[lis[i]] += 1
+        
+print("Total number of elements repeated :",dic_counter)  
+print()
+print("---------------------------------")
+print("using defaultdict method..")
+print("Example 2:")
+food_list = 'spam spam spam spam spam spam eggs spam'.split()
+food_count = defaultdict(int)  # default value of int is 0
+for food in food_list:
+    food_count[food] += 1  # increment element's value by 1     
+print("---------------------------------")
+print("Example 3:")
+food_list = 'spam spam spam spam spam spam eggs spam'.split()
+food_count = defaultdict(int)  # default value of int is 0
+for food in food_list:
+    food_count[food] += 1  # increment element's value by 1
+    #0r
+print(food_count)
+for i,j in food_count.items():
+    print(i," ",j)
+print("-----------------------------------")
+print("Example 4:")
+city_list = [('TX', 'Austin'), ('TX', 'Houston'), ('NY', 'Albany'),
+             ('NY', 'Syracuse'), ('NY', 'Buffalo'), ('NY', 'Rochester'),
+             ('TX', 'Dallas'), ('CA', 'Sacramento'), ('CA', 'Palo Alto'),
+             ('GA', 'Atlanta')]
+cities_by_state = defaultdict(list)
+for state, city in city_list:
+    cities_by_state[state].append(city)
+    #OR
+for state, cities in cities_by_state.items():
+    print(state, ', '.join(cities))        
+print()
+
+print("------------------------------------")
+print("Example 5:")
+
+from collections import defaultdict
+
+food_list = [
+    "bread", "burger", "bread", "sandwich", "burger", "sandwich", "burger","donuts"
+]
+
+food_counter = defaultdict(int)
+#default value of the int is zero
+
+for i in food_list:
+    food_counter[i] += 1  #increment food value by one...
+
+print(food_counter)
+
+#------OR---------------
+print()
+
+for i, j in food_counter.items():
+    print(i, j)
+print()  
+print()
+print("------------------------------------------------------------------------")
+print("collections.ChainMap-Search Multiple Dictionaries as a Single Mapping")
+from collections import ChainMap
+dict1={"one":1,"two":2}
+dict2={"three":3,"four":4}
+chain = ChainMap(dict1,dict2)
+print(chain) 
+print(chain['three'])
+print(chain['one'])
+#print(chain['missing'])  gives key error - KeyError:'missing'
+print()
+print()
+
+print("----------------------------------------------------------------------------")
+print("types.MappingProxyType - A Wrapper for Making Read-Only Dictionaries..")
+from types import MappingProxyType
+writable  = {"one":1,"two":2} #this can be used to read as well as write..
+read_only = MappingProxyType(writable) #this can be used to readonly..
+print(read_only['one'])
+print()
+#read_only['one'] = 23 #Gives type error..
+
+writable['one'] = 42 #will not give errox cause it is available for both reading and writting also...
+print(read_only)
+print('__________________________________________________________________________________________')
