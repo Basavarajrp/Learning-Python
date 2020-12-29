@@ -78,8 +78,7 @@ print(a)     #Here changes made to c, a will not get effected these is deep copy
 print(c)
 print()
 
-
-#Shallow copy in nested dict..    
+#Shallow copy and deep copy in nested dict..    
 std = {
     'Name':"Basu",
     'Age':23,
